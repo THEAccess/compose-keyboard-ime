@@ -6,5 +6,5 @@ import android.view.View
 
 class IMEService : InputMethodService() {
 
-    override fun onCreateInputView(): View = KeyboardView(this)
+    override fun onCreateInputView(): View = KeyboardView2(this)
 }
