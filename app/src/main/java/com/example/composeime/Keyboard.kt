@@ -14,7 +14,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Keyboard() {
-    Box(Modifier.fillMaxWidth().height(200.dp).background(Color.Black), contentAlignment = Alignment.Center) {
-        Text(text = "This should resemble a keyboard")
+    Box(
+        Modifier.fillMaxWidth().height(200.dp).background(Color.Black),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(color = Color.White, text = "This should resemble a keyboard (Compose)")
     }
 }

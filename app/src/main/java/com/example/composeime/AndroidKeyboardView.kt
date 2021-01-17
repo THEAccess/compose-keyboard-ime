@@ -1,21 +1,18 @@
 package com.example.composeime
 
 import android.content.Context
+import android.graphics.Color
+import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewTreeLifecycleOwner
 
 
-class KeyboardView(context: Context) : FrameLayout(context)  {
+class AndroidKeyboardView(context: Context) : FrameLayout(context) {
 
     init {
-        val view = ComposeView(context).apply {
-            setContent {
-                Keyboard()
-            }
-        }
-        addView(view)
+        inflate(context,R.layout.example_layout, this)
     }
 
 }

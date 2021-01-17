@@ -13,7 +13,7 @@ class IMEService : InputMethodService(), LifecycleOwner, ViewModelStoreOwner,
     SavedStateRegistryOwner {
 
     override fun onCreateInputView(): View {
-        val view = KeyboardView2(this)
+        val view = ComposeKeyboardView(this)
         ViewTreeLifecycleOwner.set(view, this)
         ViewTreeViewModelStoreOwner.set(view, this)
         ViewTreeSavedStateRegistryOwner.set(view, this)
@@ -33,11 +33,13 @@ class IMEService : InputMethodService(), LifecycleOwner, ViewModelStoreOwner,
     private fun handleLifecycleEvent(event: Lifecycle.Event) =
         lifecycleRegistry.handleLifecycleEvent(event)
 
-
     override fun onCreate() {
         super.onCreate()
+        savedStateRegistry.performRestore(null)
         handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

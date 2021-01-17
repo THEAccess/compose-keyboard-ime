@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.AbstractComposeView
 import androidx.lifecycle.ViewTreeLifecycleOwner
 
 
-class KeyboardView2 constructor(
+class ComposeKeyboardView constructor(
     context: Context,
 
     ) : AbstractComposeView(context) {
