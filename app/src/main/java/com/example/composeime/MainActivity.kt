@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -26,13 +27,17 @@ class MainActivity : AppCompatActivity() {
                     Options()
                 }
             }
+            isSystemInDarkTheme()
         }
     }
 }
 
 @Composable
 fun Options() {
-    Column(Modifier.padding(16.dp).fillMaxSize()) {
+    Column(
+        Modifier
+            .padding(16.dp)
+            .fillMaxSize()) {
         val ctx = LocalContext.current
         Text(text = "Compose Keyboard")
         val (text, setValue) = remember { mutableStateOf(TextFieldValue("Try here")) }

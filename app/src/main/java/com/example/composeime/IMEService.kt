@@ -14,9 +14,11 @@ class IMEService : InputMethodService(), LifecycleOwner, ViewModelStoreOwner,
 
     override fun onCreateInputView(): View {
         val view = ComposeKeyboardView(this)
-        ViewTreeLifecycleOwner.set(view, this)
-        ViewTreeViewModelStoreOwner.set(view, this)
-        ViewTreeSavedStateRegistryOwner.set(view, this)
+        window!!.window!!.decorView.let { decorView ->
+            ViewTreeLifecycleOwner.set(decorView, this)
+            ViewTreeViewModelStoreOwner.set(decorView, this)
+            ViewTreeSavedStateRegistryOwner.set(decorView, this)
+        }
         return view
     }
 
