@@ -1,9 +1,8 @@
 package com.example.composeime
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,10 +13,17 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Keyboard() {
-    Box(
-        Modifier.fillMaxWidth().height(200.dp).background(Color.Black),
-        contentAlignment = Alignment.Center
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .background(Color.Gray),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(color = Color.White, text = "This should resemble a keyboard (Compose)")
+        Text(color = Color.Black, text = "This should resemble a keyboard")
+        Button(modifier = Modifier.width(250.dp),onClick = {  }) {
+            Text(text = "A Button")
+        }
     }
 }
