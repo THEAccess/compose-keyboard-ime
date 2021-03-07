@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContent {
             ComposeIMETheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    Options()
+                    Column {
+                        Options()
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
                 }
             }
             isSystemInDarkTheme()
@@ -37,7 +40,7 @@ fun Options() {
     Column(
         Modifier
             .padding(16.dp)
-            .fillMaxSize()) {
+            .fillMaxWidth()) {
         val ctx = LocalContext.current
         Text(text = "Compose Keyboard")
         val (text, setValue) = remember { mutableStateOf(TextFieldValue("Try here")) }

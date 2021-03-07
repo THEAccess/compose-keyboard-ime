@@ -3,6 +3,7 @@ package com.example.composeime
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,5 +26,8 @@ fun Keyboard() {
         Button(modifier = Modifier.width(250.dp),onClick = {  }) {
             Text(text = "A Button")
         }
+        Text(color = Color.Black, text = "Example for Linear Progress Indicator")
+        Spacer(modifier = Modifier.height(16.dp))
+        LinearProgressIndicator()
     }
 }
