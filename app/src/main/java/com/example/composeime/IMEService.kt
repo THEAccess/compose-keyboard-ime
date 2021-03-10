@@ -19,6 +19,11 @@ class IMEService : InputMethodService(), LifecycleOwner, ViewModelStoreOwner,
             ViewTreeViewModelStoreOwner.set(decorView, this)
             ViewTreeSavedStateRegistryOwner.set(decorView, this)
         }
+       view.let { view ->
+            ViewTreeLifecycleOwner.set(view, this)
+            ViewTreeViewModelStoreOwner.set(view, this)
+            ViewTreeSavedStateRegistryOwner.set(view, this)
+        }
         return view
     }
 
