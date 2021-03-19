@@ -43,7 +43,7 @@ class IMEService : InputMethodService(), LifecycleOwner, ViewModelStoreOwner,
     override fun onCreate() {
         super.onCreate()
         savedStateRegistry.performRestore(null)
-        handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
     }
 
 

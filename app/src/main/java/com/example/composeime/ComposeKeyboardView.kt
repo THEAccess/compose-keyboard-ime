@@ -3,7 +3,6 @@ package com.example.composeime
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.AbstractComposeView
-import androidx.lifecycle.ViewTreeLifecycleOwner
 
 
 class ComposeKeyboardView constructor(
@@ -13,7 +12,7 @@ class ComposeKeyboardView constructor(
 
     @Composable
     override fun Content() {
-        Keyboard()
+        KeyboardScreen()
        
     }
 }

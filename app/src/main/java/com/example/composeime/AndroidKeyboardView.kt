@@ -12,7 +12,7 @@ class AndroidKeyboardView(context: Context) : FrameLayout(context) {
     init {
         inflate(context, R.layout.keyboard_view, this)
         findViewById<ComposeView>(R.id.compose_view).setContent {
-            Keyboard()
+            KeyboardScreen()
         }
     }
 

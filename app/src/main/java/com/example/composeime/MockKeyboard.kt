@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun Keyboard() {
+fun MockKeyboard() {
     Column(
         Modifier
             .fillMaxWidth()
