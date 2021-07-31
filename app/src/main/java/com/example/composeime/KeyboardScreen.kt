@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
@@ -47,9 +48,10 @@ fun FixedHeightBox(modifier: Modifier, height: Dp, content: @Composable () -> Un
         val placeables = measurables.map { measurable ->
             measurable.measure(constraints)
         }
-        layout(constraints.maxWidth, height.roundToPx()) {
+        val h = height.roundToPx()
+        layout(constraints.maxWidth, h) {
             placeables.forEach { placeable ->
-                placeable.place(x = 0, y = 0)
+                placeable.place(x = 0, y = kotlin.math.min(0,  h-placeable.height ))
             }
         }
     }
@@ -63,7 +65,7 @@ fun KeyboardKey(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val pressed = interactionSource.collectIsPressedAsState()
-    Box(modifier = modifier) {
+    Box(modifier = modifier.fillMaxHeight(), contentAlignment = Alignment.BottomCenter) {
         Text(keyboardKey, Modifier
             .fillMaxWidth()
             .padding(2.dp)
