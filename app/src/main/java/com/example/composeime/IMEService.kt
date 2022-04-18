@@ -13,16 +13,16 @@ class IMEService : InputMethodService(), LifecycleOwner, ViewModelStoreOwner,
     SavedStateRegistryOwner {
 
     override fun onCreateInputView(): View {
-        val view = AndroidKeyboardView(this)
+        val view = ComposeKeyboardView(this)
         window!!.window!!.decorView.let { decorView ->
             ViewTreeLifecycleOwner.set(decorView, this)
             ViewTreeViewModelStoreOwner.set(decorView, this)
             ViewTreeSavedStateRegistryOwner.set(decorView, this)
         }
-       view.let { view ->
-            ViewTreeLifecycleOwner.set(view, this)
-            ViewTreeViewModelStoreOwner.set(view, this)
-            ViewTreeSavedStateRegistryOwner.set(view, this)
+       view.let {
+            ViewTreeLifecycleOwner.set(it, this)
+            ViewTreeViewModelStoreOwner.set(it, this)
+            ViewTreeSavedStateRegistryOwner.set(it, this)
         }
         return view
     }
