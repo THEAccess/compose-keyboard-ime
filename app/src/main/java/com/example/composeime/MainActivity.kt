@@ -40,7 +40,8 @@ fun Options() {
     Column(
         Modifier
             .padding(16.dp)
-            .fillMaxWidth()) {
+            .fillMaxWidth()
+    ) {
         val ctx = LocalContext.current
         Text(text = "Compose Keyboard")
         val (text, setValue) = remember { mutableStateOf(TextFieldValue("Try here")) }
@@ -58,6 +59,5 @@ fun Options() {
         }
         Spacer(modifier = Modifier.height(16.dp))
         TextField(value = text, onValueChange = setValue, modifier = Modifier.fillMaxWidth())
-
     }
 }
