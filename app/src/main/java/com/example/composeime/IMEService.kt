@@ -8,9 +8,7 @@ import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 
-class IMEService :
-    InputMethodService(),
-    LifecycleOwner,
+class IMEService : LifecycleInputMethodService(),
     ViewModelStoreOwner,
     SavedStateRegistryOwner {
 
@@ -18,47 +16,33 @@ class IMEService :
         val view = ComposeKeyboardView(this)
 
         window?.window?.decorView?.let { decorView ->
-            ViewTreeLifecycleOwner.set(decorView, this)
-            ViewTreeViewModelStoreOwner.set(decorView, this)
+            decorView.setViewTreeLifecycleOwner(this)
+            decorView.setViewTreeViewModelStoreOwner(this)
             decorView.setViewTreeSavedStateRegistryOwner(this)
-        }
-        view.let {
-            ViewTreeLifecycleOwner.set(it, this)
-            ViewTreeViewModelStoreOwner.set(it, this)
-            view.setViewTreeSavedStateRegistryOwner(this)
         }
         return view
     }
 
-    // Lifecylce Methods
 
-    private var lifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
-
-    private fun handleLifecycleEvent(event: Lifecycle.Event) =
-        lifecycleRegistry.handleLifecycleEvent(event)
-
-    override fun getLifecycle(): Lifecycle {
-        return lifecycleRegistry
-    }
 
     override fun onCreate() {
         super.onCreate()
         savedStateRegistryController.performRestore(null)
-        handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
+
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    }
+    override val viewModelStore: ViewModelStore
+        get() = store
+    override val lifecycle: Lifecycle
+        get() = dispatcher.lifecycle
 
-    // ViewModelStore Methods
+
+    //ViewModelStore Methods
     private val store = ViewModelStore()
 
-    override fun getViewModelStore(): ViewModelStore = store
-
-    // SaveStateRegestry Methods
+    //SaveStateRegestry Methods
 
     private val savedStateRegistryController = SavedStateRegistryController.create(this)
-    override val savedStateRegistry: SavedStateRegistry = savedStateRegistryController.savedStateRegistry
+
+    override val savedStateRegistry: SavedStateRegistry get() = savedStateRegistryController.savedStateRegistry
 }

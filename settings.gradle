@@ -5,9 +5,9 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '8.1.0-alpha08'
-        id 'com.android.library' version '8.1.0-alpha08'
-        id 'org.jetbrains.kotlin.android' version '1.6.21'
+        id 'com.android.application' version '8.1.0-alpha09'
+        id 'com.android.library' version '8.1.0-alpha09'
+        id 'org.jetbrains.kotlin.android' version '1.8.10'
     }
 }
 dependencyResolutionManagement {
