@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-
 @Composable
 fun MockKeyboard() {
     Column(
@@ -23,7 +22,7 @@ fun MockKeyboard() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(color = Color.Black, text = "This should resemble a keyboard")
-        Button(modifier = Modifier.width(250.dp),onClick = {  }) {
+        Button(modifier = Modifier.width(250.dp), onClick = { }) {
             Text(text = "A Button")
         }
         Text(color = Color.Black, text = "Example for Linear Progress Indicator")

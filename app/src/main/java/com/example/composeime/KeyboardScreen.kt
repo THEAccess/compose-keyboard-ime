@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -28,7 +29,6 @@ fun KeyboardScreen() {
             .background(Color(0xFF9575CD))
             .fillMaxWidth()
     ) {
-
         keysMatrix.forEach { row ->
             FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 56.dp) {
                 Row(Modifier) {
@@ -37,7 +37,6 @@ fun KeyboardScreen() {
                     }
                 }
             }
-
         }
     }
 }
@@ -51,38 +50,47 @@ fun FixedHeightBox(modifier: Modifier, height: Dp, content: @Composable () -> Un
         val h = height.roundToPx()
         layout(constraints.maxWidth, h) {
             placeables.forEach { placeable ->
-                placeable.place(x = 0, y = kotlin.math.min(0,  h-placeable.height ))
+                placeable.place(x = 0, y = kotlin.math.min(0, h - placeable.height))
             }
         }
     }
 }
 
-
 @Composable
 fun KeyboardKey(
     keyboardKey: String,
-    modifier: Modifier,
+    modifier: Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val pressed = interactionSource.collectIsPressedAsState()
+    val ctx = LocalContext.current
     Box(modifier = modifier.fillMaxHeight(), contentAlignment = Alignment.BottomCenter) {
-        Text(keyboardKey, Modifier
-            .fillMaxWidth()
-            .padding(2.dp)
-            .border(1.dp, Color.Black)
-            .clickable(interactionSource = interactionSource, indication = null) {}
-            .background(Color.White)
-            .padding(
-                start = 12.dp,
-                end = 12.dp,
-                top = 16.dp,
-                bottom = 16.dp
-            )
+        Text(
+            keyboardKey,
+            Modifier
+                .fillMaxWidth()
+                .padding(2.dp)
+                .border(1.dp, Color.Black)
+                .clickable(interactionSource = interactionSource, indication = null) {
+                    (ctx as IMEService).currentInputConnection.commitText(
+                        keyboardKey,
+                        keyboardKey
+                            .length
+                    )
+                }
+                .background(Color.White)
+                .padding(
+                    start = 12.dp,
+                    end = 12.dp,
+                    top = 16.dp,
+                    bottom = 16.dp
+                )
 
         )
         if (pressed.value) {
             Text(
-                keyboardKey, Modifier
+                keyboardKey,
+                Modifier
                     .fillMaxWidth()
                     .border(1.dp, Color.Black)
                     .background(Color.White)
