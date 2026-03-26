@@ -15,9 +15,9 @@ plugins {
 }
 
 subprojects {
-  apply plugin: "org.jmailen.kotlinter" // Version should be inherited from parent
+    apply(plugin = "org.jmailen.kotlinter")
 }
 
-task clean(type: Delete) {
-    delete rootProject.layout.buildDirectory
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
 }

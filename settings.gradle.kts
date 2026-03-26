@@ -5,9 +5,6 @@ pluginManagement {
         mavenCentral()
     }
 }
-plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
-}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "com.example.composeime"
-include ':app'
+rootProject.name = "ComposeIME"
+include(":app")
