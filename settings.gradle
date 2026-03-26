@@ -4,13 +4,6 @@ pluginManagement {
         google()
         mavenCentral()
     }
-    plugins {
-        id 'com.android.application' version '9.1.0'
-        id 'com.android.library' version '9.1.0'
-        id 'org.jetbrains.kotlin.android' version '2.2.10'
-        id 'org.jetbrains.kotlin.plugin.compose' version '2.2.10'
-        id 'org.jmailen.kotlinter' version '5.4.2'
-    }
 }
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
